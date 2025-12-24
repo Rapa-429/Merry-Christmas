@@ -1,15 +1,20 @@
-$(function () {
-    const envelope = $('#envelope');
+document.addEventListener('DOMContentLoaded', () => {
+    const envelope = document.getElementById('envelope');
+    const openBtn = document.getElementById('open');
+    const resetBtn = document.getElementById('reset');
 
-    $('#open').on('click', () => {
-        envelope.removeClass('close').addClass('open');
+    // Toggle open state when envelope is clicked
+    envelope.addEventListener('click', () => {
+        envelope.classList.toggle('open');
     });
 
-    $('#reset').on('click', () => {
-        envelope.removeClass('open').addClass('close');
+    // Open envelope button
+    openBtn.addEventListener('click', () => {
+        envelope.classList.add('open');
     });
 
-    envelope.on('click', () => {
-        envelope.toggleClass('open close');
+    // Reset/close envelope button
+    resetBtn.addEventListener('click', () => {
+        envelope.classList.remove('open');
     });
 });
