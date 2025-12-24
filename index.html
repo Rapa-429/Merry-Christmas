@@ -1,29 +1,67 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
 <head>
-    <title>MERRY_CHRISTMAS</title>
+    <meta charset="UTF-8">
+    <title>MERRY CHRISTMAS</title>
+
     <link href="https://fonts.googleapis.com/css2?family=Handlee&display=swap" rel="stylesheet">
+
     <style>
         :root {
-            --color-env: #fa0000;
-            --color-env2: #de0202;
-            --color-flap: #ff8da1;
-            --color-bg: #2b24f2;
-            --color-heart: #ff032d;
-            --color-sparkle: #fff;
-            --wax-red: #c04040;
+            --color-env: #b11226;
+            --color-env2: #8f0f1f;
+            --color-flap: #d32f2f;
+            --color-bg: linear-gradient(180deg, #0b3d2e, #06261c);
+            --color-heart: #c62828;
+            --color-sparkle: #ffffff;
+        }
+
+        body {
+            background: var(--color-bg);
+            margin: 0;
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            overflow: hidden;
+            position: relative;
+        }
+
+        body::before {
+            content: "";
+            position: absolute;
+            inset: 0;
+            background-image: radial-gradient(white 1px, transparent 1px);
+            background-size: 40px 40px;
+            opacity: 0.25;
+            animation: snow 20s linear infinite;
+        }
+
+        @keyframes snow {
+            from { background-position: 0 0; }
+            to { background-position: 0 800px; }
+        }
+
+        .envlope-wrapper {
+            height: 420px;
+            margin-top: 80px;
+            animation: float 3s ease-in-out infinite;
+            z-index: 2;
+        }
+
+        @keyframes float {
+            0%,100% { transform: translateY(0); }
+            50% { transform: translateY(-10px); }
         }
 
         #envelope {
             position: relative;
-            width: 280px;
-            height: 180px;
+            width: 340px;
+            height: 220px;
+            background-color: var(--color-flap);
             border-bottom-left-radius: 6px;
             border-bottom-right-radius: 6px;
-            margin: 0 auto;
-            top: 150px;
-            background-color: var(--color-flap);
-            box-shadow: 0 4px 20px rgba(0,0,0,.1);
+            box-shadow: 0 10px 30px rgba(0,0,0,.25);
             cursor: pointer;
         }
 
@@ -35,124 +73,89 @@
         }
 
         .flap {
-            border-left: 140px solid transparent;
-            border-right: 140px solid transparent;
-            border-bottom: 82px solid transparent;
-            border-top: 98px solid var(--color-flap);
+            border-left: 170px solid transparent;
+            border-right: 170px solid transparent;
+            border-top: 120px solid var(--color-flap);
             transform-origin: top;
-            pointer-events: none;
         }
 
         .pocket {
-            border-left: 140px solid var(--color-env);
-            border-right: 140px solid var(--color-env);
-            border-bottom: 90px solid var(--color-env2);
-            border-top: 90px solid transparent;
+            border-left: 170px solid var(--color-env);
+            border-right: 170px solid var(--color-env);
+            border-bottom: 110px solid var(--color-env2);
+            border-top: 110px solid transparent;
             border-bottom-left-radius: 6px;
             border-bottom-right-radius: 6px;
         }
 
         .letter {
             position: relative;
-            background-color: #e0d9dd;
-            width: 90%;
+            background-color: #f3ecef;
+            width: 92%;
+            height: 92%;
             margin: 0 auto;
-            height: 90%;
-            top: 5%;
+            top: 4%;
             border-radius: 6px;
-            box-shadow: 0 2px 26px rgba(0,0,0,.08);
-            padding: 15px;
+            box-shadow: 0 5px 25px rgba(0,0,0,.2);
+            padding: 20px;
             box-sizing: border-box;
+            z-index: 2;
         }
 
         .letter:after {
             content: '';
             position: absolute;
-            top: 0;
-            bottom: 0;
-            left: 0;
-            right: 0;
-            background-image: linear-gradient(180deg, 
-                rgba(255,255,255,0.00) 25%, 
-                rgba(255,231,236,0.70) 55%, 
-                rgba(255,231,236,1.00) 100%);
+            inset: 0;
+            background-image: linear-gradient(
+                180deg,
+                rgba(255,255,255,0) 30%,
+                rgba(255,231,236,.8) 70%,
+                rgba(255,231,236,1) 100%
+            );
+            border-radius: 6px;
         }
 
         .message {
             position: relative;
             z-index: 2;
             font-family: 'Handlee', cursive;
-            color: #d46a84;
+            color: #b11226;
             text-align: center;
-            line-height: 1;
-            padding-top: 0px;
+            padding-top: 20px;
         }
 
         .message p {
-            margin: 10px 0;
-            font-size: 1.8em;
-            text-shadow: 0 2px 3px rgba(0,0,0,0.1);
-        }
-
-        @keyframes float {
-            0%, 100% { transform: translateY(0); }
-            50% { transform: translateY(-10px); }
-        }
-
-        .envlope-wrapper {
-            height: 380px;
-            margin-top: 50px;
-            animation: float 3s ease-in-out infinite;
+            margin: 12px 0;
+            font-size: 2em;
+            line-height: 1.2;
+            text-shadow: 0 2px 3px rgba(0,0,0,0.15);
         }
 
         .open .flap {
             transform: rotateX(180deg);
-            transition: transform 0.4s ease, z-index 0.6s;
+            transition: transform .4s ease;
             z-index: 1;
         }
 
         .close .flap {
-            transform: rotateX(0deg);
-            transition: transform 0.4s 0.6s ease, z-index 1s;
+            transform: rotateX(0);
+            transition: transform .4s ease .6s;
             z-index: 5;
         }
 
-        .close .letter {
-            transform: translateY(0px); 
-            transition: transform 0.4s ease, z-index 1s;
-            z-index: 1;
-        }
-
         .open .letter {
-            transform: translateY(-60px) rotate(-2deg);
-            transition: transform 0.4s 0.6s ease, z-index 0.6s;
-            z-index: 2;
+            transform: translateY(-70px) rotate(-2deg);
+            transition: transform .4s ease .6s;
         }
 
-        
-
-        .letter-corner {
-            position: absolute;
-            width: 20px;
-            height: 20px;
-            border: 2px solid #ffd1dc;
-            border-radius: 5px;
-            z-index: 3;
+        .close .letter {
+            transform: translateY(0);
+            transition: transform .4s ease;
         }
-        .corner-tl { top: 10px; left: 10px; border-right: none; border-bottom: none; }
-        .corner-br { bottom: 10px; right: 10px; border-left: none; border-top: none; }
 
         .hearts, .sparkles {
             position: absolute;
-            top: 90px;
-            left: 0;
-            right: 0;
-            z-index: 2;
-        }
-
-        .heart, .sparkle {
-            position: absolute;
-            bottom: 0;
+            inset: 0;
             pointer-events: none;
         }
 
@@ -160,151 +163,87 @@
         .heart:after {
             content: "";
             position: absolute;
-            left: 25px;
-            top: 0;
-            width: 25px;
-            height: 40px;
+            width: 20px;
+            height: 32px;
             background: var(--color-heart);
-            border-radius: 25px 25px 0 0;
+            border-radius: 20px 20px 0 0;
+        }
+
+        .heart:before {
             transform: rotate(-45deg);
-            transform-origin: 0 100%;
+            left: 12px;
         }
 
         .heart:after {
-            left: 0;
             transform: rotate(45deg);
-            transform-origin: 100% 100%;
+            left: 0;
         }
 
-        .sparkle {
-            width: 8px;
-            height: 8px;
-            background: var(--color-sparkle);
-            border-radius: 50%;
-            animation: sparkleTwinkle 1s infinite;
+        .heart {
+            position: absolute;
+            bottom: 0;
+            animation: slideUp 5s linear infinite;
         }
-
-        .close .heart,
-        .close .sparkle {
-            opacity: 0;
-            animation: none;
-        }
-
-        .a1 { left: 20%; transform: scale(0.6); animation: slideUp 4s linear infinite, sideSway 2s ease-in-out infinite alternate; }
-        .a2 { left: 55%; animation: slideUp 5s linear infinite, sideSway 4s ease-in-out infinite alternate; }
-        .a3 { left: 10%; transform: scale(0.8); animation: slideUp 7s linear infinite, sideSway 2s ease-in-out infinite alternate; }
-
-        .s1 { left: 30%; animation: sparkleUp 3s linear infinite; }
-        .s2 { left: 60%; animation: sparkleUp 4s linear infinite; }
-        .s3 { left: 45%; animation: sparkleUp 5s linear infinite; }
 
         @keyframes slideUp {
-            0% { top: 0; }
-            100% { top: -600px; }
-        }
-
-        @keyframes sideSway {
-            0% { margin-left: 0; }
-            50% { margin-left: 50px; }
-            100% { margin-left: 0; }
-        }
-
-        @keyframes sparkleUp {
-            0% { transform: translateY(0); opacity: 1; }
-            100% { transform: translateY(-500px) rotate(360deg); opacity: 0; }
-        }
-
-        @keyframes sparkleTwinkle {
-            0%, 100% { transform: scale(1); }
-            50% { transform: scale(1.5); }
-        }
-
-        body {
-            background-color: var(--color-bg);
-            margin: 0;
-            min-height: 100vh;
-            display: flex;
-            flex-direction: column;
-            align-items: center;
+            from { transform: translateY(0); opacity: 1; }
+            to { transform: translateY(-500px); opacity: 0; }
         }
 
         .reset {
-            text-align: center;
-            margin-top: 50px;
+            margin-top: 40px;
+            z-index: 2;
         }
 
         .reset button {
-            font-weight: 600;
-            transition: all 0.3s ease;
             background-color: var(--color-env);
-            border: 2px solid var(--color-env2);
+            border: none;
             border-radius: 20px;
             color: white;
             padding: 12px 25px;
             margin: 10px;
             font-size: 16px;
             cursor: pointer;
-            box-shadow: 0 5px 20px rgba(0,0,0,0.15);
-            font-family: Arial, sans-serif;
+            box-shadow: 0 5px 20px rgba(0,0,0,.2);
         }
 
         .reset button:hover {
             background-color: var(--color-env2);
-            transform: translateY(-3px) scale(1.05);
-            box-shadow: 0 7px 25px rgba(0,0,0,0.2);
+            transform: translateY(-2px);
         }
     </style>
 </head>
+
 <body>
-    <div class="envlope-wrapper">
-        <div id="envelope" class="close">
-            <div class="wax-seal"></div>
-            <div class="front flap"></div>
-            <div class="front pocket"></div>
-            <div class="letter">
-                <div class="letter-corner corner-tl"></div>
-                <div class="letter-corner corner-br"></div>
-                <div class="message">
-                    <p>Merry Christmas Everyone,</p>
-                    <p>Love, Joy, Hope.</p>
-                </div>
-            </div>
-            <div class="hearts">
-                <div class="heart a1"></div>
-                <div class="heart a2"></div>
-                <div class="heart a3"></div>
-            </div>
-            <div class="sparkles">
-                <div class="sparkle s1"></div>
-                <div class="sparkle s2"></div>
-                <div class="sparkle s3"></div>
+
+<div class="envlope-wrapper">
+    <div id="envelope" class="close">
+        <div class="front flap"></div>
+        <div class="front pocket"></div>
+
+        <div class="letter">
+            <div class="message">
+                <p>Merry Christmas Everyone,</p>
+                <p>Love, Joy, Hope.</p>
             </div>
         </div>
     </div>
-    <div class="reset">
-        <button id="open">Open Envelope</button>
-        <button id="reset">Close Envelope</button>
-    </div>
+</div>
 
-    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
-    <script>
-        $(document).ready(function() {
-            const envelope = $('#envelope');
-            const btnOpen = $("#open");
-            const btnReset = $("#reset");
+<div class="reset">
+    <button id="open">Open Envelope</button>
+    <button id="reset">Close Envelope</button>
+</div>
 
-            envelope.on('click', open);
-            btnOpen.on('click', open);
-            btnReset.on('click', close);
+<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+<script>
+    $(function () {
+        const envelope = $('#envelope');
+        $('#open').on('click', () => envelope.removeClass('close').addClass('open'));
+        $('#reset').on('click', () => envelope.removeClass('open').addClass('close'));
+        envelope.on('click', () => envelope.toggleClass('open close'));
+    });
+</script>
 
-            function open() {
-                envelope.removeClass("close").addClass("open");
-            }
-
-            function close() {
-                envelope.removeClass("open").addClass("close");
-            }
-        });
-    </script>
 </body>
 </html>
