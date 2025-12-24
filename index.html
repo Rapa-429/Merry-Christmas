@@ -3,33 +3,26 @@
 <head>
     <meta charset="UTF-8">
     <title>Merry Christmas</title>
-
     <link href="https://fonts.googleapis.com/css2?family=Handlee&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="style.css">
 </head>
-
 <body>
 
 <div class="envlope-wrapper">
-    <div id="envelope" class="close">
+    <!-- Hidden checkbox toggles the envelope -->
+    <input type="checkbox" id="toggle-envelope" hidden>
+    
+    <label id="envelope" for="toggle-envelope">
         <div class="front flap"></div>
         <div class="front pocket"></div>
-
         <div class="letter">
             <div class="message">
                 <p>Merry Christmas Everyone,</p>
                 <p>Love, Joy, Hope.</p>
             </div>
         </div>
-    </div>
+    </label>
 </div>
 
-<div class="reset">
-    <button id="open">Open Envelope</button>
-    <button id="reset">Close Envelope</button>
-</div>
-
-<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
-<script src="script.js"></script>
 </body>
 </html>
