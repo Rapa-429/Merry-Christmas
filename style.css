@@ -1,89 +1,179 @@
 :root {
-    --color-env: #b11226;
-    --color-env2: #8f0f1f;
-    --color-flap: #d32f2f;
-    --color-bg: linear-gradient(180deg, #0b3d2e, #06261c);
+    --color-env: #c41e3a;     /* red envelope */
+    --color-env2: #841f2b;    /* darker red */
+    --color-flap: #ff4d6d;    /* bright flap */
+    --color-bg: #0a1b2a;      /* night blue background */
+    --color-heart: #ff0000;
+    --color-sparkle: #fff;
 }
 
 body {
-    background: var(--color-bg);
     margin: 0;
     min-height: 100vh;
     display: flex;
     flex-direction: column;
     align-items: center;
-    overflow: hidden;
-    position: relative;
+    justify-content: flex-start;
+    background: linear-gradient(#0a1b2a, #002244);
+    overflow-x: hidden;
+    font-family: 'Handlee', cursive;
 }
 
-.envlope-wrapper {
-    height: 420px;
-    margin-top: 80px;
+.envelope-wrapper {
+    height: 450px;
+    margin-top: 50px;
+    animation: float 3s ease-in-out infinite;
 }
 
 #envelope {
-    display: block;
     position: relative;
-    width: 340px;
-    height: 220px;
+    width: 350px;       /* bigger */
+    height: 230px;      /* bigger */
+    margin: 0 auto;
     cursor: pointer;
-    perspective: 800px;
-}
-
-.front {
-    position: absolute;
-    width: 0;
-    height: 0;
-    z-index: 3;
 }
 
 .flap {
-    border-left: 170px solid transparent;
-    border-right: 170px solid transparent;
-    border-top: 120px solid var(--color-flap);
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 0;
+    height: 0;
+    border-left: 175px solid transparent;
+    border-right: 175px solid transparent;
+    border-bottom: 100px solid var(--color-flap);
     transform-origin: top;
-    transition: transform 0.4s ease;
+    z-index: 3;
 }
 
 .pocket {
-    border-left: 170px solid var(--color-env);
-    border-right: 170px solid var(--color-env);
-    border-bottom: 110px solid var(--color-env2);
-    border-top: 110px solid transparent;
+    position: absolute;
+    bottom: 0;
+    width: 0;
+    height: 0;
+    border-left: 175px solid var(--color-env);
+    border-right: 175px solid var(--color-env);
+    border-bottom: 120px solid var(--color-env2);
+    border-top: 0 solid transparent;
+    border-bottom-left-radius: 6px;
+    border-bottom-right-radius: 6px;
+    z-index: 2;
 }
 
 .letter {
     position: relative;
-    background-color: #f3ecef;
-    width: 92%;
-    height: 92%;
+    background-color: #fff5f7;
+    width: 90%;
     margin: 0 auto;
-    top: 4%;
+    height: 90%;
+    top: 5%;
     border-radius: 6px;
-    box-shadow: 0 5px 25px rgba(0,0,0,.2);
+    box-shadow: 0 2px 20px rgba(0,0,0,.1);
     padding: 20px;
     box-sizing: border-box;
-    transform: translateY(0) rotate(0deg);
-    transition: transform 0.4s ease 0.6s;
+    z-index: 1;
 }
 
+.letter-corner {
+    position: absolute;
+    width: 20px;
+    height: 20px;
+    border: 2px solid #ff4d6d;
+    border-radius: 5px;
+}
+
+.corner-tl { top: 10px; left: 10px; border-right: none; border-bottom: none; }
+.corner-br { bottom: 10px; right: 10px; border-left: none; border-top: none; }
+
 .message {
-    font-family: 'Handlee', cursive;
-    color: #b11226;
+    position: relative;
+    z-index: 2;
+    color: #c41e3a;
     text-align: center;
-    padding-top: 20px;
+    line-height: 1.2;
 }
 
 .message p {
+    margin: 10px 0;
     font-size: 2em;
-    margin: 12px 0;
+    text-shadow: 0 1px 2px rgba(0,0,0,0.2);
 }
 
-/* CSS toggling using checkbox */
-#toggle-envelope:checked + #envelope .flap {
-    transform: rotateX(180deg);
+.open .flap { transform: rotateX(180deg); transition: transform 0.5s ease; z-index: 1; }
+.close .flap { transform: rotateX(0deg); transition: transform 0.5s ease; z-index: 3; }
+
+.open .letter { transform: translateY(-80px) rotate(-2deg); transition: transform 0.5s ease; }
+.close .letter { transform: translateY(0); transition: transform 0.5s ease; }
+
+.hearts, .sparkles {
+    position: absolute;
+    top: 90px;
+    left: 0;
+    right: 0;
 }
 
-#toggle-envelope:checked + #envelope .letter {
-    transform: translateY(-70px) rotate(-2deg);
+.heart, .sparkle {
+    position: absolute;
+    bottom: 0;
+    pointer-events: none;
+}
+
+.heart:before,
+.heart:after {
+    content: "";
+    position: absolute;
+    left: 25px;
+    top: 0;
+    width: 25px;
+    height: 40px;
+    background: var(--color-heart);
+    border-radius: 25px 25px 0 0;
+    transform: rotate(-45deg);
+    transform-origin: 0 100%;
+}
+
+.heart:after {
+    left: 0;
+    transform: rotate(45deg);
+    transform-origin: 100% 100%;
+}
+
+.sparkle {
+    width: 8px;
+    height: 8px;
+    background: var(--color-sparkle);
+    border-radius: 50%;
+    animation: sparkleTwinkle 1s infinite;
+}
+
+.reset {
+    text-align: center;
+    margin-top: 30px;
+}
+
+.reset button {
+    font-weight: 600;
+    background-color: var(--color-env);
+    border: 2px solid var(--color-env2);
+    border-radius: 20px;
+    color: white;
+    padding: 12px 25px;
+    margin: 10px;
+    font-size: 16px;
+    cursor: pointer;
+}
+
+.reset button:hover {
+    background-color: var(--color-env2);
+    transform: translateY(-3px) scale(1.05);
+}
+
+@keyframes float {
+    0%, 100% { transform: translateY(0); }
+    50% { transform: translateY(-10px); }
+}
+
+@keyframes sparkleTwinkle {
+    0%, 100% { transform: scale(1); }
+    50% { transform: scale(1.5); }
 }
