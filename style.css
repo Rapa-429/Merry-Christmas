@@ -79,7 +79,7 @@ body::before {
     0% { transform: translateY(-10px) rotate(0deg); }
     100% { transform: translateY(100vh) rotate(360deg); }
 }
-
+//jj
 /* Subtle sparkle animation on text */
 .christmas-message::after {
     content: "❄️";
