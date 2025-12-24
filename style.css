@@ -1,179 +1,50 @@
-:root {
-    --color-env: #c41e3a;     /* red envelope */
-    --color-env2: #841f2b;    /* darker red */
-    --color-flap: #ff4d6d;    /* bright flap */
-    --color-bg: #0a1b2a;      /* night blue background */
-    --color-heart: #ff0000;
-    --color-sparkle: #fff;
-}
-
 body {
     margin: 0;
-    min-height: 100vh;
+    padding: 0;
+    height: 100vh;
     display: flex;
-    flex-direction: column;
+    justify-content: center;
     align-items: center;
-    justify-content: flex-start;
-    background: linear-gradient(#0a1b2a, #002244);
-    overflow-x: hidden;
+    background: linear-gradient(to bottom, #0b3d91, #1e90ff); /* night sky */
+    overflow: hidden;
     font-family: 'Handlee', cursive;
+    color: #fff8f0;
 }
 
-.envelope-wrapper {
-    height: 450px;
-    margin-top: 50px;
-    animation: float 3s ease-in-out infinite;
-}
-
-#envelope {
-    position: relative;
-    width: 350px;       /* bigger */
-    height: 230px;      /* bigger */
-    margin: 0 auto;
-    cursor: pointer;
-}
-
-.flap {
-    position: absolute;
-    top: 0;
-    left: 0;
-    width: 0;
-    height: 0;
-    border-left: 175px solid transparent;
-    border-right: 175px solid transparent;
-    border-bottom: 100px solid var(--color-flap);
-    transform-origin: top;
-    z-index: 3;
-}
-
-.pocket {
-    position: absolute;
-    bottom: 0;
-    width: 0;
-    height: 0;
-    border-left: 175px solid var(--color-env);
-    border-right: 175px solid var(--color-env);
-    border-bottom: 120px solid var(--color-env2);
-    border-top: 0 solid transparent;
-    border-bottom-left-radius: 6px;
-    border-bottom-right-radius: 6px;
-    z-index: 2;
-}
-
-.letter {
-    position: relative;
-    background-color: #fff5f7;
-    width: 90%;
-    margin: 0 auto;
-    height: 90%;
-    top: 5%;
-    border-radius: 6px;
-    box-shadow: 0 2px 20px rgba(0,0,0,.1);
-    padding: 20px;
-    box-sizing: border-box;
-    z-index: 1;
-}
-
-.letter-corner {
-    position: absolute;
-    width: 20px;
-    height: 20px;
-    border: 2px solid #ff4d6d;
-    border-radius: 5px;
-}
-
-.corner-tl { top: 10px; left: 10px; border-right: none; border-bottom: none; }
-.corner-br { bottom: 10px; right: 10px; border-left: none; border-top: none; }
-
-.message {
-    position: relative;
-    z-index: 2;
-    color: #c41e3a;
+.christmas-message {
     text-align: center;
-    line-height: 1.2;
-}
-
-.message p {
-    margin: 10px 0;
-    font-size: 2em;
-    text-shadow: 0 1px 2px rgba(0,0,0,0.2);
-}
-
-.open .flap { transform: rotateX(180deg); transition: transform 0.5s ease; z-index: 1; }
-.close .flap { transform: rotateX(0deg); transition: transform 0.5s ease; z-index: 3; }
-
-.open .letter { transform: translateY(-80px) rotate(-2deg); transition: transform 0.5s ease; }
-.close .letter { transform: translateY(0); transition: transform 0.5s ease; }
-
-.hearts, .sparkles {
-    position: absolute;
-    top: 90px;
-    left: 0;
-    right: 0;
-}
-
-.heart, .sparkle {
-    position: absolute;
-    bottom: 0;
-    pointer-events: none;
-}
-
-.heart:before,
-.heart:after {
-    content: "";
-    position: absolute;
-    left: 25px;
-    top: 0;
-    width: 25px;
-    height: 40px;
-    background: var(--color-heart);
-    border-radius: 25px 25px 0 0;
-    transform: rotate(-45deg);
-    transform-origin: 0 100%;
-}
-
-.heart:after {
-    left: 0;
-    transform: rotate(45deg);
-    transform-origin: 100% 100%;
-}
-
-.sparkle {
-    width: 8px;
-    height: 8px;
-    background: var(--color-sparkle);
-    border-radius: 50%;
-    animation: sparkleTwinkle 1s infinite;
-}
-
-.reset {
-    text-align: center;
-    margin-top: 30px;
-}
-
-.reset button {
-    font-weight: 600;
-    background-color: var(--color-env);
-    border: 2px solid var(--color-env2);
+    background: rgba(255, 0, 0, 0.6); /* festive red overlay */
+    padding: 40px;
     border-radius: 20px;
-    color: white;
-    padding: 12px 25px;
-    margin: 10px;
-    font-size: 16px;
-    cursor: pointer;
+    box-shadow: 0 10px 30px rgba(0,0,0,0.3);
 }
 
-.reset button:hover {
-    background-color: var(--color-env2);
-    transform: translateY(-3px) scale(1.05);
+.christmas-message h1 {
+    font-size: 3em;
+    margin-bottom: 20px;
+    color: #ffecb3;
+    text-shadow: 2px 2px 6px #b30000;
 }
 
-@keyframes float {
-    0%, 100% { transform: translateY(0); }
-    50% { transform: translateY(-10px); }
+.christmas-message p {
+    font-size: 1.5em;
+    line-height: 1.5;
+    color: #fff8f0;
 }
 
-@keyframes sparkleTwinkle {
-    0%, 100% { transform: scale(1); }
-    50% { transform: scale(1.5); }
+/* Optional subtle falling snow */
+@keyframes snowFall {
+    0% { transform: translateY(-10px); }
+    100% { transform: translateY(100vh); }
+}
+
+.snowflake {
+    position: absolute;
+    top: -10px;
+    width: 6px;
+    height: 6px;
+    background: #fff;
+    border-radius: 50%;
+    opacity: 0.8;
+    animation: snowFall linear infinite;
 }
