@@ -16,42 +16,18 @@ body {
     position: relative;
 }
 
-body::before {
-    content: "";
-    position: absolute;
-    inset: 0;
-    background-image: radial-gradient(white 1px, transparent 1px);
-    background-size: 40px 40px;
-    opacity: 0.25;
-    animation: snow 20s linear infinite;
-}
-
-@keyframes snow {
-    from { background-position: 0 0; }
-    to { background-position: 0 800px; }
-}
-
 .envlope-wrapper {
     height: 420px;
     margin-top: 80px;
-    animation: float 3s ease-in-out infinite;
-    z-index: 2;
-}
-
-@keyframes float {
-    0%,100% { transform: translateY(0); }
-    50% { transform: translateY(-10px); }
 }
 
 #envelope {
+    display: block;
     position: relative;
     width: 340px;
     height: 220px;
-    background-color: var(--color-flap);
-    border-bottom-left-radius: 6px;
-    border-bottom-right-radius: 6px;
-    box-shadow: 0 10px 30px rgba(0,0,0,.25);
     cursor: pointer;
+    perspective: 800px;
 }
 
 .front {
@@ -103,27 +79,11 @@ body::before {
     margin: 12px 0;
 }
 
-/* Open state */
-#envelope.open .flap {
+/* CSS toggling using checkbox */
+#toggle-envelope:checked + #envelope .flap {
     transform: rotateX(180deg);
 }
 
-#envelope.open .letter {
+#toggle-envelope:checked + #envelope .letter {
     transform: translateY(-70px) rotate(-2deg);
-}
-
-.reset {
-    margin-top: 40px;
-    z-index: 2;
-}
-
-.reset button {
-    background-color: var(--color-env);
-    border: none;
-    border-radius: 20px;
-    color: white;
-    padding: 12px 25px;
-    margin: 10px;
-    font-size: 16px;
-    cursor: pointer;
 }
