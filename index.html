@@ -4,59 +4,13 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Merry Christmas</title>
-    <link rel="stylesheet" href="style.css">
     <link href="https://fonts.googleapis.com/css2?family=Handlee&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="style.css">
 </head>
 <body>
-    <div class="envelope-wrapper">
-        <div id="envelope" class="close">
-            <div class="flap"></div>
-            <div class="pocket"></div>
-            <div class="letter">
-                <div class="letter-corner corner-tl"></div>
-                <div class="letter-corner corner-br"></div>
-                <div class="message">
-                    <p>Merry Christmas Everyone,</p>
-                    <p>Love, Joy, Hope.</p>
-                </div>
-            </div>
-            <div class="hearts">
-                <div class="heart a1"></div>
-                <div class="heart a2"></div>
-                <div class="heart a3"></div>
-            </div>
-            <div class="sparkles">
-                <div class="sparkle s1"></div>
-                <div class="sparkle s2"></div>
-                <div class="sparkle s3"></div>
-            </div>
-        </div>
+    <div class="christmas-message">
+        <h1>MERRY CHRISTMAS EVERYONE!</h1>
+        <p>May this season bring you peace, warmth, and a little joy that carries into the year ahead.</p>
     </div>
-
-    <div class="reset">
-        <button id="open">Open Envelope</button>
-        <button id="reset">Close Envelope</button>
-    </div>
-
-    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
-    <script>
-        $(document).ready(function() {
-            const envelope = $('#envelope');
-            const btnOpen = $("#open");
-            const btnReset = $("#reset");
-
-            envelope.on('click', open);
-            btnOpen.on('click', open);
-            btnReset.on('click', close);
-
-            function open() {
-                envelope.removeClass("close").addClass("open");
-            }
-
-            function close() {
-                envelope.removeClass("open").addClass("close");
-            }
-        });
-    </script>
 </body>
 </html>
