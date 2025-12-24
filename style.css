@@ -3,8 +3,6 @@
     --color-env2: #8f0f1f;
     --color-flap: #d32f2f;
     --color-bg: linear-gradient(180deg, #0b3d2e, #06261c);
-    --color-heart: #c62828;
-    --color-sparkle: #ffffff;
 }
 
 body {
@@ -68,6 +66,7 @@ body::before {
     border-right: 170px solid transparent;
     border-top: 120px solid var(--color-flap);
     transform-origin: top;
+    transition: transform 0.4s ease;
 }
 
 .pocket {
@@ -88,6 +87,8 @@ body::before {
     box-shadow: 0 5px 25px rgba(0,0,0,.2);
     padding: 20px;
     box-sizing: border-box;
+    transform: translateY(0) rotate(0deg);
+    transition: transform 0.4s ease 0.6s;
 }
 
 .message {
@@ -102,18 +103,13 @@ body::before {
     margin: 12px 0;
 }
 
-.open .flap {
+/* Open state */
+#envelope.open .flap {
     transform: rotateX(180deg);
-    transition: transform .4s ease;
 }
 
-.open .letter {
+#envelope.open .letter {
     transform: translateY(-70px) rotate(-2deg);
-    transition: transform .4s ease .6s;
-}
-
-.close .letter {
-    transform: translateY(0);
 }
 
 .reset {
